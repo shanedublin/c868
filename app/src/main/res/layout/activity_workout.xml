@@ -28,6 +28,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:focusable="false"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +67,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/exercise_recycler_view"
+        android:id="@+id/workout_exercise_recycler_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -90,7 +92,7 @@
         android:layout_marginEnd="16dp"
         android:text="Delete"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_recycler_view"/>
+        app:layout_constraintTop_toBottomOf="@+id/workout_exercise_recycler_view"/>
 
     <Button
         android:id="@+id/save"
@@ -104,6 +106,6 @@
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Delete"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_recycler_view" />
+        app:layout_constraintTop_toBottomOf="@+id/workout_exercise_recycler_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

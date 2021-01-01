@@ -1,8 +1,11 @@
 package com.example.circfit.entities
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-class YourExercise (
+
+@Entity
+data class YourExercise (
 
     @PrimaryKey(autoGenerate = true)
     val yourExerciseId: Long,

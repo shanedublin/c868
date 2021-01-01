@@ -7,7 +7,7 @@ import java.time.LocalDate
 @Entity
 data class Workout (
     @PrimaryKey(autoGenerate = true)
-    val workoutId: Long,
-    val date: LocalDate,
-    val notes: String
+    val workoutId: Long?,
+    var date: LocalDate,
+    var notes: String
 )

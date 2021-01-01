@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class Tag (
     @PrimaryKey(autoGenerate = true)
-    val tagId: Long,
+    val tagId: Long?,
     val name: String
 )
