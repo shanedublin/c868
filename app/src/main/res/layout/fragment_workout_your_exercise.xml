@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ExerciseFragment">
-
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp">
 
     <TextView
         android:id="@+id/exercise_select_label"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Exercise"
         app:layout_constraintEnd_toStartOf="@id/exercise_select_input"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,46 +21,42 @@
         android:id="@+id/exercise_select_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/exercise_select_label"
-        app:layout_constraintTop_toTopOf="@+id/exercise_select_label"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/exercise_select_label" />
 
-
-    <HorizontalScrollView
-        android:id="@+id/set_scroll_view"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/your_exercise_sets_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
+        android:text="Sets"
+        app:layout_constraintBottom_toBottomOf="@+id/your_exercise_sets_recycler_view"
+        app:layout_constraintEnd_toStartOf="@+id/your_exercise_sets_recycler_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/your_exercise_sets_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/your_exercise_sets_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        app:layout_constraintTop_toBottomOf="@id/exercise_select_input">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/sets"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" >
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </HorizontalScrollView>
-
-
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toEndOf="@id/your_exercise_sets_label"
+        app:layout_constraintTop_toBottomOf="@id/exercise_select_input"
+        tools:itemCount="10"
+        tools:listitem="@layout/fragment_exercise_set" />
 
     <TextView
         android:id="@+id/set_notes_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/text_margin"
         android:text="Notes"
-        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/set_notes_input"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/set_notes_input"
-        />
+        app:layout_constraintTop_toTopOf="@+id/set_notes_input" />
 
     <EditText
         android:id="@+id/set_notes_input"
@@ -69,15 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/set_notes_label"
-        app:layout_constraintTop_toBottomOf="@id/set_scroll_view"
-        />
+        app:layout_constraintTop_toBottomOf="@id/your_exercise_sets_recycler_view" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

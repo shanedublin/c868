@@ -1,19 +1,18 @@
 package com.example.circfit
 
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.circfit.database.CirFitDatabase
+import com.example.circfit.entities.ExerciseSet
 import com.example.circfit.entities.Workout
 import com.example.circfit.entities.WorkoutWithYourExercise
+import com.example.circfit.entities.WorkoutYourExerciseAdapter
 import com.example.circfit.util.DateListener
 import java.time.LocalDate
-import java.util.*
 
 class WorkoutActivity : BaseMenuActivity() {
     val tag: String? = this::class.simpleName
@@ -22,14 +21,15 @@ class WorkoutActivity : BaseMenuActivity() {
 
     lateinit var dateText: EditText
     lateinit var notesText: EditText
-    lateinit var recyclerView: RecyclerView
+    lateinit var workoutExerciseRecyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
-        dateText =  findViewById<EditText>(R.id.workout_date_input)
-        notesText = findViewById<EditText>(R.id.workout_notes_input)
-        recyclerView = findViewById<RecyclerView>(R.id.workout_exercise_recycler_view)
+        dateText =  findViewById(R.id.workout_date_input)
+        notesText = findViewById(R.id.workout_notes_input)
+        workoutExerciseRecyclerView = findViewById(R.id.workout_exercise_recycler_view)
 
         val id = intent.getLongExtra("id", -1L)
         workout = if( id > 0) {
@@ -44,13 +44,39 @@ class WorkoutActivity : BaseMenuActivity() {
         notesText.setText(workout.workout.notes)
 
         Log.d(tag, workout.exercises.toTypedArray().contentToString())
+        val workoutYourExerciseAdapter = WorkoutYourExerciseAdapter(workout.exercises, this)
+        workoutExerciseRecyclerView.layoutManager = LinearLayoutManager(this)
+        workoutExerciseRecyclerView.adapter = workoutYourExerciseAdapter;
+        //recyclerView.layoutManager(LinearLayoutManager(this))
 
-       // recyclerView.layoutManager(LinearLayoutManager(this))
+
+    }
+
+    fun focusSetItem(
+        v: View,
+        item: ExerciseSet,
+        myExerciseSetRecyclerViewAdapter: MyExerciseSetRecyclerViewAdapter
+    ){
+        Log.d(tag, "smd")
+        Log.d(tag, v.parent.toString())
+        Log.d(tag, item.toString())
+        Log.d(tag, myExerciseSetRecyclerViewAdapter.values.toTypedArray().contentToString())
+
+
+
+    }
+
+    fun foo(v: View, item: ExerciseSet){
+        Log.d(tag, "smd")
+        Log.d(tag, v.parent.toString())
+        Log.d(tag, item.toString())
+
 
 
     }
 
     fun save(v: View){
+
 
     }
 

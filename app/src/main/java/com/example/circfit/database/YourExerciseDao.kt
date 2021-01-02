@@ -10,7 +10,7 @@ interface YourExerciseDao {
 
 
     @Transaction
-    @Query("select * from yourexercise where workoutId =(:id)")
+    @Query("select * from YourExercise where workoutId =(:id)")
     fun findById(id: Long): List<YourExercise>
 
 
