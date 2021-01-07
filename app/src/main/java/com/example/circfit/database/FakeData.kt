@@ -36,8 +36,8 @@ class FakeData {
             createWorkout(1)
 
             createYourExercise(1,1,1)
-            createYourExercise(2,1,2)
-            createYourExercise(3,1,5)
+            //createYourExercise(2,1,2)
+            //createYourExercise(3,1,5)
 
             createSet(1, 1,1,5)
             createSet(2, 1,2,4)

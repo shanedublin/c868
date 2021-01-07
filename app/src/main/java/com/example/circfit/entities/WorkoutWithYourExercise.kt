@@ -11,5 +11,5 @@ data class WorkoutWithYourExercise (
         parentColumn = "workoutId",
         entityColumn = "workoutId"
     )
-    val exercises: List<YourExercise>
+    var exercises: List<YourExercise>
 )

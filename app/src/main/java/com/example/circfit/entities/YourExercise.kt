@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class YourExercise (
 
     @PrimaryKey(autoGenerate = true)
-    val yourExerciseId: Long,
-    val workoutId: Long,
-    val exerciseId: Long,
-    val notes: String
+    var yourExerciseId: Long?,
+    var workoutId: Long?,
+    var exerciseId: Long?,
+    var notes: String?
 )

@@ -1,12 +1,14 @@
-package com.example.circfit
+package com.example.circfit.adapter
 
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.example.circfit.R
 import com.example.circfit.entities.ExerciseSet
+import com.example.circfit.entities.WorkoutDataModel
 
 
 /**
@@ -15,8 +17,7 @@ import com.example.circfit.entities.ExerciseSet
  */
 class MyExerciseSetRecyclerViewAdapter(
     val values: MutableList<ExerciseSet>,
-    private val workoutActivity: WorkoutActivity,
-    val yourExerciseSetsRecyclerView: RecyclerView
+    val dataModel: WorkoutDataModel
 ) : RecyclerView.Adapter<MyExerciseSetRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,16 +29,11 @@ class MyExerciseSetRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.setInput.text = item.reps?.toString()
+        holder.setInput.text = item.reps?.toString();
 
-        holder.setInput.onFocusChangeListener =
-            OnFocusChangeListener { v, hasFocus ->
-                if(!hasFocus){
-                    workoutActivity.focusSetItem(v, item,this)
-                }
-            }
-
-
+        holder.setInput.doAfterTextChanged {
+                t -> item.reps = t.toString().toLong()
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -50,7 +46,4 @@ class MyExerciseSetRecyclerViewAdapter(
         }
     }
 
-    override fun toString(): String {
-        return "What in tornation";
-    }
 }

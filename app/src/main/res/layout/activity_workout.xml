@@ -65,7 +65,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/workout_notes_label"
             app:layout_constraintTop_toBottomOf="@id/workout_date_input"
@@ -88,6 +88,21 @@
             />
 
         <Button
+            android:id="@+id/add_your_exercise_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Add Exercise"
+            android:onClick="addYourExercise"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workout_exercise_recycler_view"
+            />
+
+        <Button
             android:id="@+id/Delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,8 +112,9 @@
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
             android:text="Delete"
+            android:onClick="delete"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/workout_exercise_recycler_view"
+            app:layout_constraintTop_toBottomOf="@id/add_your_exercise_button"
             />
 
         <Button
@@ -111,9 +127,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="Save"
+            android:onClick="save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Delete"
-            app:layout_constraintTop_toBottomOf="@id/workout_exercise_recycler_view"
+            app:layout_constraintTop_toBottomOf="@id/add_your_exercise_button"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class ExerciseSet(
    @PrimaryKey(autoGenerate = true)
    var setId: Long?,
-   var yourExerciseId: Long,
+   var yourExerciseId: Long?,
    var order: Long?,
    var reps: Long?)
