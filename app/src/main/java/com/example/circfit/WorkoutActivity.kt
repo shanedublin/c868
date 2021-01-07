@@ -38,6 +38,13 @@ class WorkoutActivity : BaseMenuActivity() {
             workoutDataModel.setExercises(CirFitDatabase.getDBInstance(applicationContext).yourExerciseDao().findById(id))
         }
 
+
+        val date = intent.getSerializableExtra("date")
+
+        if(date != null ) {
+            workoutDataModel.workout.date = date  as LocalDate
+        }
+
         var workout = workoutDataModel.workout
 
         DateListener(dateText, this) { localDate -> workout.date = localDate }

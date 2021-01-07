@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.room.*
 import com.example.circfit.entities.Workout
 import com.example.circfit.entities.WorkoutWithYourExercise
+import java.time.LocalDate
 
 @Dao
 interface WorkoutDao {
@@ -19,7 +20,9 @@ interface WorkoutDao {
     @Query("select * from workout where workoutId =(:id)")
     fun findWorkoutById(id: Long): Workout
 
-
+    @Transaction
+    @Query("select * from workout where date =(:date)")
+    fun findWorkoutByDate(date: LocalDate): Workout
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
