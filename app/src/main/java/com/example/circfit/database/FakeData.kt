@@ -3,6 +3,7 @@ package com.example.circfit.database
 import android.content.Context
 import com.example.circfit.entities.*
 import java.time.LocalDate
+import java.util.concurrent.atomic.AtomicLong
 
 class FakeData {
 
@@ -13,6 +14,11 @@ class FakeData {
         lateinit var exerciseDao: ExerciseDao
         lateinit var exerciseSetDao: ExerciseSetDao
         lateinit var yourExerciseDao: YourExerciseDao
+        val tagInt = AtomicLong(1)
+        val exerciseInt = AtomicLong(1)
+        val workoutInt = AtomicLong(1)
+        val yourExerciseInt = AtomicLong(1)
+        val setInt = AtomicLong(1)
 
         fun prepopulateDatabase(c: Context) {
             val db = CirFitDatabase.getDBInstance(c)
@@ -21,53 +27,76 @@ class FakeData {
             workoutDao = db.workoutDao()
             exerciseDao = db.exerciseDao()
             yourExerciseDao = db.yourExerciseDao()
+            
+            createTag("Drill")
+            createTag("Skill")
+            createTag("Exercise")
 
-            createTag(1,"Drill")
-            createTag(2,"Skill")
-            createTag(3,"Exercise")
+            createExercise("Push Ups","Do a push up")
+            createExercise("Pull Ups","Grab the bar with your knuckles facing towards your face and pull your chest to the bar")
+            createExercise("Handstand Wall Hold","Hold a handstand with your belly facing the wall")
+            createExercise("Handstand Tuck-Up","Tuck up into a handstand")
+            createExercise("Leg lifts","With straight arm, lift your toes up to the bar or w/e you are holding")
+            createExercise("Shrugs","Hold onto the bar and shrug your shoulders down")
 
-            createExercise(1,"Push Ups","do a pushup")
-            createExercise(2,"Pull Ups","Grab the bar with your knuckles facing towards your face and pull your chest to the bar ")
-            createExercise(3,"Handstand Wall Hold","Hold a handstand with your belly facing the wall")
-            createExercise(4,"Handstand Tuck-Up","tuck up into a handstand")
-            createExercise(5,"Leg lifts","with straight arm, lift your toes up to the bar or w/e you are holding")
-            createExercise(6,"Shrugs","hold onto the bar and shrug your shoulders down")
+            createWorkout(
+                LocalDate.of(2021,1,1),
+                arrayOf(1L,2L,3L), arrayOf(1L,1L,1L))
 
-            createWorkout(1)
+            createWorkout(
+                LocalDate.of(2021,1,2),
+                arrayOf(4L,5L,6L), arrayOf(1L,1L,1L))
 
-            createYourExercise(1,1,1)
-            //createYourExercise(2,1,2)
-            //createYourExercise(3,1,5)
+            createWorkout(
+                LocalDate.of(2021,1,3),
+                arrayOf(1L,2L,3L), arrayOf(2L,2L,2L,2L))
 
-            createSet(1, 1,1,5)
-            createSet(2, 1,2,4)
-            createSet(3, 1,3,6)
+            createWorkout(
+                LocalDate.of(2021,1,4),
+                arrayOf(4L,5L,6L), arrayOf(2L,2L,2L,2L))
+
+            createWorkout(
+                LocalDate.of(2021,1,5),
+                arrayOf(1L,2L,3L), arrayOf(3L,3L,3L,3L,3L))
+
+            createWorkout(
+                LocalDate.of(2021,1,6),
+                arrayOf(4L,5L,6L), arrayOf(3L,3L,3L,3L,3L))
 
         }
 
-        fun createTag(id: Long, name: String) {
+        fun createTag( name: String) {
+            val id = tagInt.getAndIncrement()
             val t = Tag(id, name)
             tagDao.insert(t);
         }
 
-        fun createExercise(id:Long , name: String, description: String) {
-            val e = Exercise(id,name,description)
+        fun createExercise(name: String, description: String) {
+            val e = Exercise(exerciseInt.getAndIncrement(), name,description)
             exerciseDao.insert(e)
         }
 
-        fun createSet(setId:Long, yourExerciseId: Long ,order:Long, reps: Long){
+        fun createSet(yourExerciseId: Long ,order:Long, reps: Long){
+            val setId = setInt.getAndIncrement()
             val s = ExerciseSet(setId, yourExerciseId, order, reps)
             exerciseSetDao.insert(s)
         }
 
-        fun createWorkout(id:Long ){
-            val w = Workout(id, LocalDate.now(),"Test")
+        fun createWorkout(date: LocalDate, exercises: Array<Long>, reps: Array<Long>){
+            val workoutId = workoutInt.getAndIncrement()
+            val w = Workout(workoutId, date,"Test")
             workoutDao.insert(w)
+
+            exercises.forEach { exerciseId ->  createYourExercise(workoutId, exerciseId, reps)}
         }
 
-        fun createYourExercise(yourExerciseId:Long, workoutId: Long, exerciseId:Long ){
+        fun createYourExercise( workoutId: Long, exerciseId:Long, reps:Array<Long> ){
+            val yourExerciseId = yourExerciseInt.getAndIncrement()
             val yourExercise = YourExercise(yourExerciseId, workoutId, exerciseId,"notes...")
-            yourExerciseDao.insert(yourExercise);
+            yourExerciseDao.insert(yourExercise)
+
+            reps.forEachIndexed{ index, reps -> createSet(yourExerciseId, index.toLong(), reps) }
+
         }
 
 

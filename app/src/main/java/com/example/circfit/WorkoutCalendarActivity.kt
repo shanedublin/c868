@@ -12,7 +12,7 @@ import java.time.LocalDate
 class WorkoutCalendarActivity : BaseMenuActivity() {
 
 
-    val tag: String? = this::class.simpleName
+    //val tag: String? = this::class.simpleName
     lateinit var calendarView: CalendarView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

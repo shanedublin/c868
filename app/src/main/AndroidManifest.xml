@@ -12,7 +12,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
-        <activity android:name=".YourExerciseStatsActivity" />
+        <activity android:name=".ExerciseReportActivity" />
         <activity android:name=".ExerciseListActivity" />
         <activity android:name=".WorkoutCalendarActivity" />
         <activity android:name=".WorkoutActivity" />

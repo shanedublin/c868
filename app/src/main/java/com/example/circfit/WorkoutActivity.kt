@@ -14,7 +14,7 @@ import com.example.circfit.util.MyDateUtil.dtf
 import java.time.LocalDate
 
 class WorkoutActivity : BaseMenuActivity() {
-    val tag: String? = this::class.simpleName
+    //val tag: String? = this::class.simpleName
 
     var workoutDataModel = WorkoutDataModel( Workout(null, LocalDate.now(), ""), ArrayList())
 
@@ -35,7 +35,7 @@ class WorkoutActivity : BaseMenuActivity() {
         if( id > 0) {
             Log.d(tag, "");
             workoutDataModel.workout =  CirFitDatabase.getDBInstance(applicationContext).workoutDao().findWorkoutById(id)
-            workoutDataModel.setExercises(CirFitDatabase.getDBInstance(applicationContext).yourExerciseDao().findById(id))
+            workoutDataModel.setExercises(CirFitDatabase.getDBInstance(applicationContext).yourExerciseDao().findByWorkoutId(id))
         }
 
 

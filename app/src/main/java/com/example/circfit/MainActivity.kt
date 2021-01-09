@@ -22,7 +22,7 @@ class MainActivity : BaseMenuActivity() {
     fun openNewWorkout(v: View){
         val intent  = Intent(this, WorkoutActivity::class.java)
         //intent.putExtra("id", 1L)
-        startActivity(intent);
+        startActivity(intent)
     }
 
     fun pastWorkout(v: View){
