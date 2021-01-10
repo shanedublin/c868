@@ -16,8 +16,8 @@ open class BaseMenuActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         val itemId = item.itemId
-        if (itemId == R.id.settings_menu_button) {
-            val intent = Intent(this, SettingsActivity::class.java)
+        if(itemId == R.id.exercises_menu_button){
+            val intent = Intent(this, ExerciseListActivity::class.java)
             startActivity(intent)
             return true
         }

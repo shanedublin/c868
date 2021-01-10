@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.circfit.adapter.WorkoutYourExerciseAdapter
@@ -63,6 +64,8 @@ class WorkoutActivity : BaseMenuActivity() {
 
 
     fun addYourExercise(v: View) {
+        save(v)
+
         var ye = YourExercise(null, workoutDataModel.workout.workoutId,null,null);
         val id = CirFitDatabase.getDBInstance(applicationContext).yourExerciseDao().insert(ye);
         ye.yourExerciseId = id;
@@ -80,17 +83,56 @@ class WorkoutActivity : BaseMenuActivity() {
         workoutYourExerciseAdapter.notifyDataSetChanged();
     }
 
-    fun save(v: View){
+    fun save(v: View):Boolean {
 
-        val dbInstance = CirFitDatabase.getDBInstance(applicationContext)
-        Log.d(tag, workoutDataModel.toString())
-        workoutDataModel.workout.notes = notesText.text.toString()
-        dbInstance.workoutDao().insert(workoutDataModel.workout)
-        dbInstance.yourExerciseDao().insertAll(workoutDataModel.yourExerciseList)
+        if(validateWorkout()) {
+            val dbInstance = CirFitDatabase.getDBInstance(applicationContext)
+            Log.d(tag, workoutDataModel.toString())
+            workoutDataModel.workout.notes = notesText.text.toString()
+            val id = dbInstance.workoutDao().insert(workoutDataModel.workout)
+            workoutDataModel.workout.workoutId = id
+            dbInstance.yourExerciseDao().insertAll(workoutDataModel.yourExerciseList)
 
-        workoutYourExerciseAdapter.dataModel.yourExerciseList.forEach{ e -> dbInstance.exerciseSetDao().insertAll(e.sets)}
+            workoutYourExerciseAdapter.dataModel.yourExerciseList.forEach{ e -> dbInstance.exerciseSetDao().insertAll(e.sets)}
+            return true
+        }
+        return false
+    }
 
-        finish()
+    fun validateWorkout(): Boolean{
+
+        val findWorkoutByDate = CirFitDatabase.getDBInstance(applicationContext).workoutDao()
+            .findWorkoutByDate(workoutDataModel.workout.date)
+
+        if(findWorkoutByDate!= null ) {
+            val dateToast =
+                Toast.makeText(applicationContext, "A workout already exists for this date please go to previous workouts and edit the date", Toast.LENGTH_LONG)
+            if(workoutDataModel.workout.workoutId == null) {
+                dateToast.show()
+                return false
+            }
+            if(workoutDataModel.workout.workoutId != findWorkoutByDate.workoutId) {
+                dateToast.show()
+                return false
+            }
+        }
+        var validExercise = true;
+        // need to select a valid exercise
+        workoutDataModel.yourExerciseList
+            .forEach{ye -> if(ye.yourExercise.exerciseId == null) {
+                val makeText =
+                    Toast.makeText(applicationContext, "Select a valid exercise", Toast.LENGTH_SHORT)
+                makeText.show()
+                validExercise = false
+        } }
+
+        return validExercise
+    }
+
+    fun saveAndFinish(v: View) {
+        if(save(v)){
+            finish()
+        }
     }
 
 

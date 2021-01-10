@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 
 @Entity
-data class Exercise (
+data class Exercise  (
     @PrimaryKey(autoGenerate = true)
-    val exerciseId: Long,
-    val name: String,
-    val description: String
+    var exerciseId: Long?,
+    var name: String,
+    var description: String
 )

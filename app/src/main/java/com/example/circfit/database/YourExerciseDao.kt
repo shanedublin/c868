@@ -19,6 +19,8 @@ interface YourExerciseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(yourExercise: MutableList<YourExerciseWithSets>) {
+
+
         yourExercise.forEach { e -> insert(e.yourExercise) }
     }
 

@@ -3,7 +3,6 @@ package com.example.circfit
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.example.circfit.entities.Workout
 
 class MainActivity : BaseMenuActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class MainActivity : BaseMenuActivity() {
     }
 
     fun exerciseStats(v: View){
-        val intent  = Intent(this, ExerciseListActivity::class.java)
+        val intent  = Intent(this, ExerciseReportListActivity::class.java)
         startActivity(intent);
     }
 }

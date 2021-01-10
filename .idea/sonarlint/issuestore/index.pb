@@ -10,8 +10,6 @@ Aapp/src/main/java/com/example/circfit/database/DateConverter.java,0\3\034ee7e1
 u
 Eapp/src/main/java/com/example/circfit/entities/ExerciseTagCrossRef.kt,2\8\28429c3c824452a509033a069e02e0e2b1e719ce
 i
-9app/src/main/java/com/example/circfit/SettingsActivity.kt,9\8\982e0d6ec3b6948af3b3de4ee879062c9d5c4aef
-i
 9app/src/main/java/com/example/circfit/BaseMenuActivity.kt,0\2\027781fd1fa3ed040ddee17524a24f1cd56d4138
 p
 @app/src/main/java/com/example/circfit/WorkoutCalendarActivity.kt,9\3\9305e443f51d113e502fed49b6629b4ef4711b62

@@ -26,7 +26,7 @@ interface WorkoutDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(workout: Workout)
+    fun insert(workout: Workout): Long
 
 
     fun insert(workoutWithYourExercise: WorkoutWithYourExercise) {

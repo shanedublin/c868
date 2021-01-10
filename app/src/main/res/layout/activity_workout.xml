@@ -127,7 +127,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="Save"
-            android:onClick="save"
+            android:onClick="saveAndFinish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Delete"
             app:layout_constraintTop_toBottomOf="@id/add_your_exercise_button"

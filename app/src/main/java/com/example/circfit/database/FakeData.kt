@@ -38,6 +38,7 @@ class FakeData {
             createExercise("Handstand Tuck-Up","Tuck up into a handstand")
             createExercise("Leg lifts","With straight arm, lift your toes up to the bar or w/e you are holding")
             createExercise("Shrugs","Hold onto the bar and shrug your shoulders down")
+            createExercise("Skin the cat","Wrap wrists in straps and invert backwards till you reach end of motion")
 
             createWorkout(
                 LocalDate.of(2021,1,1),

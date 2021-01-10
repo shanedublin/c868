@@ -35,6 +35,7 @@ class ExerciseReportAdapter(
         val reportDate: TextView = view.findViewById(R.id.report_date)
         val reportSets: TextView = view.findViewById(R.id.report_sets)
         val reportReps: TextView = view.findViewById(R.id.report_reps)
+        val reportNotes: TextView = view.findViewById(R.id.report_note)
 
     }
 
@@ -45,6 +46,8 @@ class ExerciseReportAdapter(
             val workout = CirFitDatabase.getDBInstance(context).workoutDao().findWorkoutById(item.workoutId!!)
             holder.reportDate.text = workout.date.format(dtf);
         }
+
+        holder.reportNotes.text = item.notes
 
         if(item.yourExerciseId != null) {
             val sets = CirFitDatabase.getDBInstance(context).exerciseSetDao().findById(item.yourExerciseId!!)

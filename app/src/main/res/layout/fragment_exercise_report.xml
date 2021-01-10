@@ -50,7 +50,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/report_linear_layout"
-        android:text="Notes"
+        android:text=""
         />
 
 

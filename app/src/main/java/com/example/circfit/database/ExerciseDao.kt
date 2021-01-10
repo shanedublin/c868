@@ -10,8 +10,12 @@ interface ExerciseDao {
     @Query("SELECT * FROM  exercise")
     fun getAll(): List<Exercise>
 
-    @Query("select e.* from YourExercise ye , Exercise e where ye.yourExerciseId = e.exerciseId and e.name like '%'||:search||'%'")
-    fun findByExercise(search: String): List<Exercise>
+    @Query("select * from Exercise where exerciseId in( select distinct exerciseId from YourExercise) and name like '%'||:search||'%'")
+    fun findByYourExerciseJoin(search: String): List<Exercise>
+
+
+    @Query("select * from Exercise where name like '%'||:search||'%'")
+    fun findByExerciseByName(search: String): List<Exercise>
 
     @Query("select * from Exercise e where exerciseId =(:id)")
     fun findById(id:Long): Exercise

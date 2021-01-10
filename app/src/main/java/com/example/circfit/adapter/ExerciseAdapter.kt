@@ -9,11 +9,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.circfit.*
 
-class CompletedExerciseAdapter(
+class ExerciseAdapter(
     val exerciseDataModel: ExerciseDataModel,
-    val exerciseListActivity: ExerciseReportListActivity
+    val activity: BaseMenuActivity
 ) :
-    RecyclerView.Adapter<CompletedExerciseAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_completed_exercise, parent, false)
@@ -39,9 +39,9 @@ class CompletedExerciseAdapter(
         holder.exerciseDescription.text = exerciseDataModel.list[position].description
 
         holder.constraintLayout.setOnClickListener{
-            val intent  = Intent(exerciseListActivity.applicationContext, ExerciseReportActivity::class.java)
+            val intent  = Intent(activity.applicationContext, ExerciseActivity::class.java)
             intent.putExtra("exerciseId", exerciseDataModel.list[position].exerciseId)
-            exerciseListActivity.startActivity(intent);
+            activity.startActivity(intent);
         }
     }
 

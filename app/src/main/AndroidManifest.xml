@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CircFit">
+        <activity android:name=".ExerciseActivity"></activity>
+        <activity android:name=".ExerciseListActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity android:name=".ExerciseReportActivity" />
-        <activity android:name=".ExerciseListActivity" />
+        <activity android:name=".ExerciseReportListActivity" />
         <activity android:name=".WorkoutCalendarActivity" />
         <activity android:name=".WorkoutActivity" />
         <activity android:name=".ModifyExerciseActivity" />
@@ -24,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
