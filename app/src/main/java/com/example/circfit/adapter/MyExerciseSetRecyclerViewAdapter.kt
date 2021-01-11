@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.circfit.R
 import com.example.circfit.entities.ExerciseSet
 import com.example.circfit.entities.WorkoutDataModel
+import java.lang.Exception
 
 
 /**
@@ -30,8 +31,12 @@ class MyExerciseSetRecyclerViewAdapter(
         val item = values[position]
         holder.setInput.text = item.reps?.toString();
 
-        holder.setInput.doAfterTextChanged {
-                t -> item.reps = t.toString().toLong()
+        holder.setInput.doAfterTextChanged { t ->
+            try {
+                item.reps = t.toString().toLong()
+            } catch (e: Exception) {
+                item.reps = null
+            }
         }
     }
 
